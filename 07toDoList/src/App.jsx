@@ -21,7 +21,12 @@ function App() {
 
   const handleCheckBox = (e) => {
     let id = e.target.name;
-    todos.filter;
+    let index = todos.findIndex(item=>{
+      return item.id === id
+    })
+    let newTodos = todos;
+    newTodos[index].isCompleted = !newTodos[index].isCompleted
+    setTodos(newTodos)
   };
 
   return (
