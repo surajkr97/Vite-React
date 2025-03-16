@@ -1,21 +1,27 @@
 import Navbar from "./components/Navbar";
 import "./App.css";
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const handleEdit = () => { };
-  const handleDelete = () => { };
+  const handleEdit = () => {};
+  const handleDelete = () => {};
   const handleAdd = () => {
-    setTodos([{ todo, isCompleted: false }, ...todos]);
+    setTodos([{ id: uuidv4(), todo, isCompleted: false }, ...todos]);
     setTodo("");
     console.log(todos);
   };
 
   const handleChange = (e) => {
     setTodo(e.target.value);
+  };
+
+  const handleCheckBox = (e) => {
+    let id = e.target.name;
+    todos.filter;
   };
 
   return (
@@ -42,9 +48,16 @@ function App() {
           {todos.map((item) => {
             return (
               <div className="todo flex py-2">
+                <input
+                  type="checkbox"
+                  name={todo.id}
+                  value={todo.isCompleted}
+                  onChange={handleCheckBox}
+                />
                 <div
-                  className={`${item.isCompleted ? "" : "line-through"
-                    } bg-violet-50 text-xl px-2 rounded-md w-1/2`}
+                  className={`${
+                    item.isCompleted ? "line-through" : ""
+                  } bg-violet-50 text-xl px-2 rounded-md w-1/2`}
                 >
                   {item.todo}
                 </div>
