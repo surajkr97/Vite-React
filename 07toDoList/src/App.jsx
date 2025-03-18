@@ -7,11 +7,18 @@ function App() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const handleEdit = () => {};
+  const handleEdit = (e, id) => {
+    let t = todos.filter(i=>i.id===id)
+    setTodo(t[0].todo)
+    let newTodos = todos.filter(item =>{
+      return item.id!==id
+    }
+    );
+    setTodos(newTodos)
+  };
 
   const handleDelete = (e, id) => {
     console.log(`this is id :- ${id}`)
-
     const updatedTodos = todos.filter(item=>item.id !== id);
     setTodos(updatedTodos)
   };
@@ -57,6 +64,7 @@ function App() {
         </div>
         <h2 className="text-xl font-bold my-4">Your Todos</h2>
         <div className="todos">
+          {todos.length === 0 && (<div>Your todo list is empty. Start by adding a new task! ✨</div>)}
           {todos.map((item) => {
             return (
               <div key={item.id} className="todo flex py-2">
@@ -75,7 +83,7 @@ function App() {
                 </div>
                 <div className="buttons my-1">
                   <button
-                    onClick={handleEdit}
+                    onClick={(e)=>handleEdit(e, item.id)}
                     className="bg-violet-800 hover:bg-violet-950 text-white font-bold px-2 rounded-md mx-2 py-1"
                   >
                     Edit
