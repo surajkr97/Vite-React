@@ -1,36 +1,21 @@
 import Navbar from "./components/Navbar";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const handleEdit = (e, id) => {
-    let t = todos.filter(i=>i.id===id)
-    setTodo(t[0].todo)
-    let newTodos = todos.filter(item =>{
-      return item.id!==id
-    }
-    );
-    setTodos(newTodos)
-  };
 
-  const handleDelete = (e, id) => {
-    console.log(`this is id :- ${id}`)
-    const updatedTodos = todos.filter(item=>item.id !== id);
-    setTodos(updatedTodos)
+  const handleChange = (e) => {
+    setTodo(e.target.value);
   };
 
   const handleAdd = () => {
     setTodos([{ id: uuidv4(), todo, isCompleted: false }, ...todos]);
     setTodo("");
-    console.log(todos);
-  };
-
-  const handleChange = (e) => {
-    setTodo(e.target.value);
+    saveToLS();
   };
 
   const handleCheckBox = (e) => {
@@ -41,7 +26,39 @@ function App() {
     let newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
+    saveToLS();
   };
+
+
+  const handleEdit = (e, id) => {
+    let t = todos.filter(i=>i.id===id)
+    setTodo(t[0].todo)
+    let newTodos = todos.filter(item =>{
+      return item.id!==id
+    }
+    );
+    setTodos(newTodos)
+    saveToLS();
+  };
+
+  const handleDelete = (e, id) => {
+    console.log(`this is id :- ${id}`)
+    const updatedTodos = todos.filter(item=>item.id !== id);
+    setTodos(updatedTodos)
+    saveToLS();
+  };
+
+  const saveToLS = ()=>{
+    localStorage.setItem("todos",JSON.stringify(todos))
+  }
+
+  useEffect(()=>{
+    let todoString = localStorage.getItem("todos")
+    if (todoString){
+      let todos = JSON.parse(localStorage.getItem("todos"))
+      setTodos(todos)
+    }
+  },[])
 
   return (
     <>
@@ -56,10 +73,11 @@ function App() {
             type="text"
           />
           <button
+            disabled={todo.length<=3}
             onClick={handleAdd}
-            className="bg-violet-800 hover:bg-violet-950 text-white font-bold px-2 py-1 rounded-md mx-6"
+            className="disabled:bg-violet-800 bg-violet-800 hover:bg-violet-950 text-white font-bold px-2 py-1 rounded-md mx-6"
           >
-            Add Task
+            Save
           </button>
         </div>
         <h2 className="text-xl font-bold my-4">Your Todos</h2>
@@ -71,7 +89,7 @@ function App() {
                 <input className="m-2 w-6 h-6 text-blue-600 border-2 border-gray-300 rounded-md cursor-pointer"
                   type="checkbox"
                   name={item.id}
-                  value={item.isCompleted}
+                  checked={item.isCompleted}
                   onChange={handleCheckBox}
                 />
                 <div
