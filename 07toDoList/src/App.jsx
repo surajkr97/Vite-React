@@ -24,9 +24,9 @@ function App() {
     let index = todos.findIndex(item=>{
       return item.id === id
     })
-    let newTodos = todos;
-    newTodos[index].isCompleted = !newTodos[index].isCompleted
-    setTodos(newTodos)
+    let newTodos = [...todos];
+    newTodos[index].isCompleted = !newTodos[index].isCompleted;
+    setTodos(newTodos);
   };
 
   return (
@@ -52,21 +52,21 @@ function App() {
         <div className="todos">
           {todos.map((item) => {
             return (
-              <div className="todo flex py-2">
-                <input
+              <div key={item.id} className="todo flex py-2">
+                <input className="m-2 w-6 h-6 text-blue-600 border-2 border-gray-300 rounded-md cursor-pointer"
                   type="checkbox"
-                  name={todo.id}
-                  value={todo.isCompleted}
+                  name={item.id}
+                  value={item.isCompleted}
                   onChange={handleCheckBox}
                 />
                 <div
                   className={`${
                     item.isCompleted ? "line-through" : ""
-                  } bg-violet-50 text-xl px-2 rounded-md w-1/2`}
+                  } bg-violet-50 text-xl px-2 rounded-md w-4/9`}
                 >
                   {item.todo}
                 </div>
-                <div className="buttons">
+                <div className="buttons my-1">
                   <button
                     onClick={handleEdit}
                     className="bg-violet-800 hover:bg-violet-950 text-white font-bold px-2 rounded-md mx-2 py-1"
