@@ -16,7 +16,7 @@ export default function Home() {
 
                         <Link
                             className="inline-flex text-white items-center px-6 py-3 font-medium bg-orange-700 rounded-lg hover:opacity-75"
-                            to="/"
+                            to="/github"
                         >
                             <svg
                                 fill="white"
@@ -38,11 +38,11 @@ export default function Home() {
                 </div>
             </aside>
 
-            <div className="grid  place-items-center sm:mt-20">
-                <img className="sm:w-96 w-48" src={Image2} alt="image2" />
+            <div className="grid  place-items-center sm:mt-20  mx-2">
+                <img className="sm:w-96 w-150" src={Image2} alt="image2" />
             </div>
 
-            <h1 className="text-center text-2xl sm:text-4xl py-10 font-medium">Stay Relaxed, Stay Productive</h1>
+            <h1 className="text-center text-4xl sm:text-4xl font-medium py-10 mx-2">Stay Relaxed, Stay Productive</h1>
         </div>
     );
 }

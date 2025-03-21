@@ -33,7 +33,7 @@ export default function Footer() {
                     Home
                   </NavLink>
                 </li>
-                <li>
+                <li className="mb-4">
                   <NavLink
                     to="/about"
                     className={({ isActive }) =>
@@ -43,6 +43,30 @@ export default function Footer() {
                     }
                   >
                     About
+                  </NavLink>
+                </li>
+                <li className="mb-4">
+                  <NavLink
+                    to="/contact"
+                    className={({ isActive }) =>
+                      `${
+                        isActive ? "text-orange-700" : "text-gray-500"
+                      } hover:underline`
+                    }
+                  >
+                    Contact
+                  </NavLink>
+                </li>
+                <li className="mb-4">
+                  <NavLink
+                    to="/github"
+                    className={({ isActive }) =>
+                      `${
+                        isActive ? "text-orange-700" : "text-gray-500"
+                      } hover:underline`
+                    }
+                  >
+                    Github
                   </NavLink>
                 </li>
               </ul>
@@ -62,14 +86,19 @@ export default function Footer() {
                     Github
                   </a>
                 </li>
-                <li>
+                <li className="mb-4">
                   <Link to="/" className="hover:underline">
                     Discord
                   </Link>
                 </li>
+                <li className="mb-4">
+                  <Link to="/" className="hover:underline">
+                    Linkedin
+                  </Link>
+                </li>
               </ul>
             </div>
-            <div>
+            <div className="hidden sm:block">
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
                 Legal
               </h2>

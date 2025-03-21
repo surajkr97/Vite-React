@@ -22,7 +22,7 @@ const Github = () => {
   return (
     <div className="bg-orange-50 flex mx-auto justify-center p-4 gap-6">
       <img
-        className="w-[145px] rounded-xl"
+        className="max-w-37 h-full rounded-xl"
         src={data.avatar_url}
         alt="Profile Picture"
       />
@@ -31,7 +31,7 @@ const Github = () => {
         <p>Name: {data.name}</p>
         <p>Github Followers: {data.followers}</p>
         <p>Github Following: {data.following}</p>
-        <p>Location: {data.location}</p>
+        <p className="hidden sm:block">Location: {data.location}</p>
         <p>Bio: {data.bio}</p>
       </div>
     </div>
