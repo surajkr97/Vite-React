@@ -70,7 +70,7 @@ function App() {
             type="text"
           />
           <button
-            disabled={todo.length <= 3}
+            disabled={todo.length <= 1}
             onClick={handleAdd}
             className="disabled:bg-violet-800 bg-violet-800 hover:bg-violet-950 text-white font-bold px-2 py-1 rounded-md mx-6"
           >
