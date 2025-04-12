@@ -1,11 +1,16 @@
 import './App.css'
+import Login from './components/Login'
+import Profile from './components/Profile'
+import UserContextProvider from './context/UserContextProvider'
 
 function App() {
 
   return (
-    <>
-      <div className='bg-red-500 font-bold text-white'>Hello</div>
-    </>
+    <UserContextProvider>
+      <div className="h-screen flex align-middle items-center flex-col justify-center gap-5">
+      <Login/>
+      <Profile/></div>
+    </UserContextProvider>
   )
 }
 
